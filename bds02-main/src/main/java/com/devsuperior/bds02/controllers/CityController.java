@@ -1,5 +1,6 @@
 package com.devsuperior.bds02.controllers;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
 
@@ -19,7 +20,8 @@ import com.devsuperior.bds02.services.CityService;
 
 @RestController
 @RequestMapping(value = "/cities")
-public class CityController {
+public class CityController implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private CityService service;

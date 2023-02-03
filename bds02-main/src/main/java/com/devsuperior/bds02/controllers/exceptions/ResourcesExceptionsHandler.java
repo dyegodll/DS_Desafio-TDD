@@ -17,25 +17,9 @@ import com.devsuperior.bds02.services.exceptions.ResourceNotFoundException;
 public class ResourcesExceptionsHandler implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
-
-	@ExceptionHandler(ResourceNotFoundException.class) //identifica método que intercepta a exception desse tipo com a exceção correspondente
-	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request){
-		HttpStatus status = HttpStatus.NOT_FOUND; //tipo ENUN de HTTP (NOT_FOUND = 404)
-		StandardError err = new StandardError();
-		err.setTimestamp(Instant.now());
-		err.setStatus(status.value()); 
-		err.setError("Resource Not Found");
-		err.setMessage(e.getMessage());
-		err.setPath(request.getRequestURI());
-		
-		//status define o status da requisição
-		return ResponseEntity.status(status).body(err);
-	}
-	
-	@ExceptionHandler(DataBaseException.class) //identifica método que intercepta a exception desse tipo com a exceção correspondente
+	@ExceptionHandler(DataBaseException.class) 
 	public ResponseEntity<StandardError> databaseError(DataBaseException e, HttpServletRequest request){
-		HttpStatus status = HttpStatus.BAD_REQUEST; //tipo ENUN de HTTP (erro sem especificação = 400)
+		HttpStatus status = HttpStatus.BAD_REQUEST; 
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(status.value()); 
@@ -43,9 +27,20 @@ public class ResourcesExceptionsHandler implements Serializable {
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		
-		//status define o status da requisição
 		return ResponseEntity.status(status).body(err);
 	}
 
+	@ExceptionHandler(ResourceNotFoundException.class) 
+	public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request){
+		HttpStatus status = HttpStatus.NOT_FOUND; 
+		StandardError err = new StandardError();
+		err.setTimestamp(Instant.now());
+		err.setStatus(status.value()); 
+		err.setError("Resource Not Found");
+		err.setMessage(e.getMessage());
+		err.setPath(request.getRequestURI());
+		
+		return ResponseEntity.status(status).body(err);
+	}
 	
 }

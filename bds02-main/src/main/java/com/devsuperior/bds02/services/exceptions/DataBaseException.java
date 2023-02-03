@@ -1,6 +1,8 @@
 package com.devsuperior.bds02.services.exceptions;
 
-public class DataBaseException extends RuntimeException {
+import java.io.Serializable;
+
+public class DataBaseException extends RuntimeException implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public DataBaseException(String msg) {

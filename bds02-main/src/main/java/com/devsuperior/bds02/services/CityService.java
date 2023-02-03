@@ -1,5 +1,6 @@
 package com.devsuperior.bds02.services;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,8 @@ import com.devsuperior.bds02.services.exceptions.DataBaseException;
 import com.devsuperior.bds02.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class CityService {
+public class CityService implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private CityRepository repository;
